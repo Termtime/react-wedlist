@@ -1,0 +1,97 @@
+#filters {
+	height: 100vh;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: auto;
+	left: 0;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+}
+
+#filters hr {
+	background-color: black;
+}
+
+.posterImg {
+	width: 65%;
+}
+
+#results {
+	overflow-y: auto;
+	transition: margin-left 0.5s; /* If you want a transition effect */
+	padding: 20px;
+}
+
+#hamburger-btn {
+	/* overflow-y: auto; */
+	transition: margin-left 0.5s; /* If you want a transition effect */
+	height: 45px;
+}
+.card {
+	width: 80%;
+	height: 40vh;
+	max-height: 40vh;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.img-container {
+	display: flex;
+	justify-content: flex-end;
+}
+.img-container img {
+	max-height: 40vh;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* phones */
+@media only screen and (max-width: 450px) {
+	h5 {
+		font-size: 12pt;
+	}
+
+	p,
+	label,
+	.badge {
+		font-size: 9pt;
+	}
+
+	#hamburger-btn {
+		width: 40px;
+	}
+
+	#filters {
+		padding-top: 20px;
+	}
+
+	#results {
+		padding: 5px !important;
+	}
+	.card-body {
+		padding: 10px !important;
+	}
+	.icon {
+		width: 20px;
+	}
+	.btn {
+		padding: 5px;
+	}
+
+	.card {
+		width: 100%;
+		height: 60vh;
+		-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+		-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	}
+
+	.img-container img {
+		width: 30vw !important;
+	}
+	.tags {
+	}
+}

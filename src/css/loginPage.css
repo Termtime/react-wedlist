@@ -1,0 +1,68 @@
+#loginPage {
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fall-wedding-venues-6-1507234688.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	/* height: 94vh; */
+	background-size: cover;
+}
+#root {
+	overflow-y: hidden;
+}
+#loginCard {
+	justify-content: center;
+	align-self: center;
+	border-radius: 4em;
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+	height: 74vh;
+	width: 40vw;
+	background: #b92b27; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to top,
+		rgba(21, 101, 192, 0.9),
+		rgba(185, 43, 39, 0.9)
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to top,
+		rgba(21, 101, 192, 0.9),
+		rgba(185, 43, 39, 0.9)
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#loginCard hr {
+	background-color: white;
+}
+
+/* phones */
+@media only screen and (max-width: 600px) {
+	#loginCard {
+		border-radius: 1em;
+		height: 50vh;
+		width: 80vw;
+		margin-top: -10vh;
+	}
+}
+/* tablets */
+@media only screen and (max-width: 1024px) and (min-width: 601px) {
+	#loginCard {
+		border-radius: 1em;
+		height: 40vh;
+		width: 70vw;
+		margin-top: -10vh;
+	}
+}
+/* old background */
+/* 
+background: #642b73; 
+	background: -webkit-linear-gradient(
+		200deg,
+		rgba(198, 66, 110, 0.9),
+		rgba(100, 43, 115, 0.9)
+	); 
+	background: linear-gradient(
+		200deg,
+		rgba(198, 66, 110, 0.9),
+		rgba(100, 43, 115, 0.9)
+	); */
