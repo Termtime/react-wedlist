@@ -16,6 +16,7 @@ import { Navbar } from "./containers/Navbar";
 import { createStore } from "redux";
 import { search } from "./reducers";
 import { Provider } from "react-redux";
+import { WeddingDetailPage } from "./pages/WeddingDetailPage";
 
 const firebase = new Firebase();
 const store = createStore(search);
@@ -36,7 +37,10 @@ ReactDOM.render(
 							<AppPage firebase={firebase} />
 						</Route>
 						<Route path={ROUTES.SEARCH}>
-							<SearchPage firebase={firebase} />
+							<SearchPage firebase={firebase} exact />
+						</Route>
+						<Route path={ROUTES.DETAIL}>
+							<WeddingDetailPage firebase={firebase} exact />
 						</Route>
 					</Switch>
 				</BrowserRouter>

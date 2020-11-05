@@ -1,12 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const moment = require("moment");
 
 const WeddingResultBase = (props) => {
 	const { data } = props.data;
-	const { id } = props.data.id;
-	console.log(data);
-
+	const { id } = props.data;
+	const history = useHistory();
+	console.log("Result id", id);
+	function goToDetails() {
+		history.push(`/app/wedding/${id}`);
+	}
 	const ceremonyDate = moment
 		.unix(data.ceremonyDate.seconds)
 		.format("DD/MM/YYYY [at] hh:mm A");
@@ -31,7 +35,9 @@ const WeddingResultBase = (props) => {
 					</p>
 				</div>
 				<div className="my-2">
-					<button className="btn btn-primary">More details</button>
+					<button className="btn btn-primary" onClick={goToDetails}>
+						More details
+					</button>
 				</div>
 				<label>Tags:</label>
 				<div className="tags my-row">
