@@ -7,7 +7,7 @@
 	background-size: cover;
 }
 #root {
-	overflow-y: hidden;
+	/* overflow-y: hidden; */
 }
 #loginCard {
 	justify-content: center;

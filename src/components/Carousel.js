@@ -2,7 +2,7 @@ import React from "react";
 
 export const Carousel = (props) => {
 	const { slides, id } = props;
-
+	console.log("slides", slides);
 	return (
 		<div id={id} className="carousel slide" data-ride="carousel">
 			<div className="carousel-inner">
