@@ -15,6 +15,10 @@ const WeddingDetailPageBase = (props) => {
 	const [wishlistItems, setWishlistItems] = useState([]);
 	const [activeSlide, setActiveSlide] = useState(0);
 	const [markerData, setMarkerData] = useState([]);
+	const [mapCoords, setMapCoords] = useState({
+		lat: 0,
+		lng: 0,
+	});
 	let activeWishlistItem = wishlistItems[activeSlide] || null;
 
 	function getData(weddingId) {
@@ -44,6 +48,10 @@ const WeddingDetailPageBase = (props) => {
 					});
 
 					setMarkerData(newMarkerData);
+					setMapCoords({
+						lat: resData ? resData.ceremonyLocation.latitude : 0,
+						lng: resData ? resData.ceremonyLocation.longitude : 0,
+					});
 				}
 			})
 			.catch((error) => {
@@ -141,13 +149,33 @@ const WeddingDetailPageBase = (props) => {
 								<h5>Location:</h5>
 							</div>
 							<div className="row center justify-content-around my-2">
-								<div className="location-pill">
+								<div
+									className="location-pill"
+									onClick={() =>
+										setMapCoords({
+											lat: data.ceremonyLocation.latitude,
+											lng:
+												data.ceremonyLocation.longitude,
+										})
+									}
+								>
 									<span className="mx-1 badge badge-pill ceremony-indicator">
 										&nbsp;
 									</span>
 									<span>Ceremony: {data.ceremonyPlace}</span>
 								</div>
-								<div className="location-pill">
+								<div
+									className="location-pill"
+									onClick={() =>
+										setMapCoords({
+											lat:
+												data.receptionLocation.latitude,
+											lng:
+												data.receptionLocation
+													.longitude,
+										})
+									}
+								>
 									<span className="mx-1 badge badge-pill reception-indicator">
 										&nbsp;
 									</span>
@@ -158,8 +186,8 @@ const WeddingDetailPageBase = (props) => {
 							</div>
 							{markerData.length > 0 ? (
 								<Mapbox
-									lat={data.ceremonyLocation.latitude || 0}
-									lng={data.ceremonyLocation.longitude || 0}
+									lat={mapCoords.lat}
+									lng={mapCoords.lng}
 									markers={markerData}
 									zoom={10}
 								/>

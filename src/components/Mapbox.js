@@ -9,7 +9,7 @@ const styles = {
 export const Mapbox = (props) => {
 	const id = props.id || "Mapbox";
 	const markers = props.markers || [];
-	const map = useRef();
+	const map = useRef(null);
 	const [mapState, setMapState] = useState({
 		lat: props.lat || 15.5,
 		lng: props.lng || -88,
@@ -24,6 +24,14 @@ export const Mapbox = (props) => {
 		});
 	};
 
+	useEffect(() => {
+		if (map.current) {
+			map.current.flyTo({
+				center: [props.lng, props.lat],
+				zoom: 11,
+			});
+		}
+	}, [props.lat, props.lng, props.zoom]);
 	useEffect(() => {
 		mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 		map.current = new mapboxgl.Map({

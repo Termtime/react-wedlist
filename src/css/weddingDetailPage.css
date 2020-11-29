@@ -105,3 +105,14 @@
 .location-pill:hover {
 	cursor: pointer;
 }
+
+@media only screen and (max-width: 768px) {
+	#wishlist-section {
+		background: linear-gradient(
+			180deg,
+			rgba(221, 239, 187, 1) 0%,
+			rgba(255, 238, 238, 1) 50%,
+			rgba(255, 255, 255, 1) 60%
+		);
+	}
+}
