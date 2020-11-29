@@ -30,7 +30,7 @@ const SearchPageBase = (props) => {
 	}
 	return (
 		<div className="my-row">
-			<button id="hamburger-btn" class="btn" onClick={toggleFilters}>
+			<button id="hamburger-btn" className="btn" onClick={toggleFilters}>
 				<img
 					alt="hamburger-icon"
 					className="icon"

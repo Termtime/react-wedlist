@@ -1,7 +1,15 @@
-.carousel-item {
-	height: 70vh;
+#landingPage-carousel {
 }
 
-.carousel-item img {
-	object-fit: contain;
+#landingPage-container .carousel-item {
+	height: 100vh;
+}
+
+#landingPage-container .carousel-item img {
+	object-fit: cover;
+}
+
+#landingPage-container {
+	display: flex;
+	flex-direction: column;
 }
