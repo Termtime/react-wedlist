@@ -1,17 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+#title-section {
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("../resources/img/wedding-venue.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: white;
+	font-family: "Rubik", sans-serif;
+	text-align: center;
+}
+
+#title {
+	text-transform: uppercase;
+}
 #details-section {
-	min-height: 70vh;
+	min-height: 50vh;
 }
 
 #location-section {
-	height: 60vh;
+	min-height: 50vh;
 }
 
 #wishlist-section {
+	background: #ffeeee; /* fallback for old browsers */
+	background: linear-gradient(
+		90deg,
+		rgba(221, 239, 187, 1) 0%,
+		rgba(255, 238, 238, 1) 56%,
+		rgba(255, 255, 255, 1) 74%
+	);
 }
 
 #wishlist-info {
 	padding: 20px;
-	height: 20vh;
+	min-height: 22vh;
 }
 
 #carousel-container {
@@ -63,12 +86,22 @@
 	/* overflow: hidden; */
 }
 
-.circle-indicator {
-	border: 1px solid black;
+.reception-indicator {
 	border-radius: 3em;
-	background-color: cyan;
 	width: 20px;
 	height: 20px;
 	justify-self: center;
 	align-self: center;
+	background-color: #33b928;
+}
+.ceremony-indicator {
+	border-radius: 3em;
+	width: 20px;
+	height: 20px;
+	justify-self: center;
+	align-self: center;
+	background-color: #2c98d1;
+}
+.location-pill:hover {
+	cursor: pointer;
 }

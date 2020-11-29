@@ -27,7 +27,7 @@ const WeddingDetailPageBase = (props) => {
 					const resData = doc.data();
 					setData(resData);
 					console.log(resData);
-					// getWishlistPreview();
+					getWishlistPreview(resData.wishlist);
 					const newMarkerData = [...markerData];
 					//ceremony location
 					newMarkerData.push({
@@ -80,88 +80,110 @@ const WeddingDetailPageBase = (props) => {
 		);
 
 		setWishlistItems(items);
+
+		$("#products-wishlist-carousel").on("slide.bs.carousel", function (e) {
+			var slideFrom = e.from;
+			var slideTo = e.to;
+
+			console.log(`${slideFrom} => ${slideTo}`);
+			setActiveSlide(slideTo);
+		});
 	}
 
 	useEffect(() => {
 		getData(wedId);
 	}, []);
 
-	$("#products-wishlist-carousel").on("slide.bs.carousel", function (e) {
-		var slideFrom = e.from;
-		var slideTo = e.to;
-
-		console.log(`${slideFrom} => ${slideTo}`);
-		setActiveSlide(slideTo);
-	});
 	if (data) {
 		return (
-			<div>
-				<div className="my-row">
-					<div id="details-section" className="col-sm-12 col-md-8">
-						{/* TODO: Wedding details display */}
-						<div className="row pt-5 mt-5">
-							<div className="col-8">
-								<h1 className="pl-3 text-truncate">
-									{data.name}
-								</h1>
-							</div>
-							<div className="col-4">
-								<h5 className="align-self-end ml-auto pr-3">
-									{
-										data.invites.filter(
-											(invited) => invited.willGo === true
-										).length
-									}{" "}
-									out of {data.invites.length} people are
-									going
-								</h5>
-								<div className="row">
-									<small className="mr-1 align-self-center">
-										Want to be invited?
-									</small>
-									<button className="btn btn-info">
-										Send a request
-									</button>
-								</div>
+			<div className="col-md-12">
+				<div id="title-section" className="row py-5">
+					<div className="col">
+						<h1 id="title">{data.name}</h1>
+						<h4 id="subtitle">
+							{`${data.brideName} and ${data.groomName}'s Wedding`}
+						</h4>
+						<div id="stats" className="col-md-12">
+							<small id="assist-counter" className="ml-auto">
+								{
+									data.invites.filter(
+										(invited) => invited.willGo === true
+									).length
+								}{" "}
+								out of {data.invites.length} people are going
+							</small>
+							<div
+								id="invite-button"
+								className="row d-block text-center"
+							>
+								<small className="mr-1 align-self-center">
+									Want to be invited?
+								</small>
+								<button className="btn btn-primary">
+									Send a request
+								</button>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div id="details-section" className="row mb-5">
+					<div className="col-md-8 pt-5">
+						{/* TODO: Wedding details display */}
 						<div className="row">
 							<span className="p-5 blogText">
 								{data.blogText}
 							</span>
 						</div>
 					</div>
-					<div id="location-section" className="col-4 ">
-						<div className="text-center mt-4">
-							<h2>Location:</h2>
-						</div>
-						<div className="row center center my-4">
-							<span className="badge badge-pill badge-primary">
-								Ceremony: {data.ceremonyPlace}
-							</span>
-							<div>
-								<span className="badge badge-pill circle-indicator">
-									{" "}
-								</span>
-								<span>Reception: {data.receptionPlace}</span>
+					<div id="location-section" className="col-md-4">
+						<div>
+							<div className="text-center mt-4">
+								<h5>Location:</h5>
 							</div>
+							<div className="row center justify-content-around my-2">
+								<div className="location-pill">
+									<span className="mx-1 badge badge-pill ceremony-indicator">
+										&nbsp;
+									</span>
+									<span>Ceremony: {data.ceremonyPlace}</span>
+								</div>
+								<div className="location-pill">
+									<span className="mx-1 badge badge-pill reception-indicator">
+										&nbsp;
+									</span>
+									<span>
+										Reception: {data.receptionPlace}
+									</span>
+								</div>
+							</div>
+							{markerData.length > 0 ? (
+								<Mapbox
+									lat={data.ceremonyLocation.latitude || 0}
+									lng={data.ceremonyLocation.longitude || 0}
+									markers={markerData}
+									zoom={10}
+								/>
+							) : null}
 						</div>
-						{markerData.length > 0 ? (
-							<Mapbox
-								lat={data.ceremonyLocation.latitude || 0}
-								lng={data.ceremonyLocation.longitude || 0}
-								markers={markerData}
-								zoom={10}
-							/>
-						) : null}
 					</div>
 				</div>
-				<div id="wishlist-section" className="my-row">
-					<div className="col-8 ">
-						{/* TODO: Wishlist navigation button and label */}
-						{wishlistItems.length > 0 ? (
+				{wishlistItems.length > 0 ? (
+					<div id="wishlist-section" className="row">
+						<div id="wishlist-info" className="col-md-8 ">
 							<div id="wishlist-info">
-								<h3>{`${data.brideName} and ${data.groomName}'s Wishlist`}</h3>
+								<div className="row">
+									<h3>
+										{`${data.brideName} and ${data.groomName}'s Wishlist`}
+									</h3>
+									<small className="align-self-center ml-2">
+										<a
+											href={data.wishlist}
+											className="link"
+										>
+											more...
+										</a>
+									</small>
+								</div>
 								<p>{activeWishlistItem.name}</p>
 								<small>{`$ ${activeWishlistItem.price}`}</small>
 								<a
@@ -171,22 +193,19 @@ const WeddingDetailPageBase = (props) => {
 									Gift it!
 								</a>
 							</div>
-						) : null}
-					</div>
-					<div
-						id="carousel-container"
-						className="col-4 align-self-center"
-					>
-						{/* TODO: Amazon wishlist products list */}
-						{wishlistItems.length > 0 ? (
+						</div>
+						<div
+							id="carousel-container"
+							className="col-md align-self-center"
+						>
 							<Carousel
 								className="product-carousel"
 								slides={wishlistItems}
 								id="products-wishlist-carousel"
 							/>
-						) : null}
+						</div>
 					</div>
-				</div>
+				) : null}
 			</div>
 		);
 	} else {

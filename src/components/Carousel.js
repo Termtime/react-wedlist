@@ -14,7 +14,7 @@ export const Carousel = (props) => {
 						key={index}
 					>
 						<img
-							className="d-block w-100"
+							className="d-block w-100 h-100"
 							src={slide.src}
 							alt={`slide ${index + 1}`}
 						/>
