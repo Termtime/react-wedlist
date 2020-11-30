@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import * as ROUTES from "../routes";
-import "../css/navbar.css";
+import * as ROUTES from "../router/routes";
+import "../styles/navbar.css";
 import { data } from "jquery";
 const NavbarBase = (props) => {
 	const history = useHistory();
 	const location = useLocation();
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [isAuthReady, setIsAuthReady] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
 
-	useEffect(() => {
-		props.firebase.auth.onAuthStateChanged((user) => {
-			if (user) {
-				setIsLoggedIn(true);
-			} else {
-				setIsLoggedIn(false);
-			}
-			setIsAuthReady(true);
-		});
-	}, []);
+	//TODO:Eliminar esto despues de pasarlo a redux
+	// useEffect(() => {
+	// 	props.firebase.auth.onAuthStateChanged((user) => {
+	// 		if (user) {
+	// 			setIsLoggedIn(true);
+	// 		} else {
+	// 			setIsLoggedIn(false);
+	// 		}
+	// 		setIsAuthReady(true);
+	// 	});
+	// }, []);
 
 	function signInWithGoogle() {
 		history.push(ROUTES.SIGNIN);
@@ -29,7 +28,7 @@ const NavbarBase = (props) => {
 		console.log("logging out");
 		if (await props.firebase.logout()) {
 			console.log("logogut success");
-			history.push("/");
+			history.push(ROUTES.LANDING);
 		}
 	}
 
@@ -52,13 +51,13 @@ const NavbarBase = (props) => {
 					results.push({ id: doc.id, data: doc.data() });
 				});
 				props.emitSearch(query, results);
-				history.push("/app/search");
+				history.push(ROUTES.SEARCH);
 			})
 			.catch((error) => console.log(error));
 	}
 
 	function goToMyEvents() {
-		history.push("/app");
+		history.push(ROUTES.MY_EVENTS);
 	}
 	return (
 		<div className="navbar-container">
@@ -109,7 +108,7 @@ const NavbarBase = (props) => {
 							</form>
 						</li>
 					</ul>
-					{location.pathname.includes("/app/my") ? (
+					{location.pathname.includes("/my") ? (
 						<button
 							className="btn btn-light  my-2 my-sm-0 mx-2"
 							onClick={goToMyEvents}
@@ -124,7 +123,7 @@ const NavbarBase = (props) => {
 							My events
 						</button>
 					)}
-					{!isLoggedIn && isAuthReady ? (
+					{props.uid == null ? (
 						<button
 							className="btn btn-success my-2 my-sm-0"
 							onClick={signInWithGoogle}

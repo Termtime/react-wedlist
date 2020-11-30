@@ -3,8 +3,8 @@ import { SearchPageBase } from "../pages/SearchPage";
 
 const mapStateToProps = (state) => {
 	return {
-		query: state.searchQuery,
-		results: state.results,
+		query: state.search.searchQuery,
+		results: state.search.results,
 	};
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import * as ROUTES from "../router/routes";
 const moment = require("moment");
 
 const WeddingResultBase = (props) => {
@@ -9,7 +9,11 @@ const WeddingResultBase = (props) => {
 	const history = useHistory();
 	console.log("Result id", id);
 	function goToDetails() {
-		history.push(`/app/wedding/${id}`);
+		console.log("I WAS CLICKED");
+		// let route = "" + ROUTES.DETAIL;
+		// route = route.replace("wedding", id);
+		console.log(ROUTES.DETAIL.replace(":wedId", id));
+		history.push(ROUTES.DETAIL.replace(":wedId", id));
 	}
 	const ceremonyDate = moment
 		.unix(data.ceremonyDate.seconds)

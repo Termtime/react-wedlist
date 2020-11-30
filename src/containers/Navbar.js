@@ -1,8 +1,11 @@
 import { connect } from "react-redux";
-import { SEARCH } from "../reducers/actions";
+import { SEARCH } from "../reducers/search/searchActions";
 import { NavbarBase } from "../components/Navbar";
 const mapStateToProps = (state) => {
-	return {};
+	return {
+		user: state.auth.user,
+		uid: state.auth.uid,
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {

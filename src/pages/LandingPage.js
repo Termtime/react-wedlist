@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/landingPage.css";
+import "../styles/landingPage.css";
 import { Carousel } from "../components/Carousel";
 import wed1 from "../resources/img/wedding-1.jpg";
 import wed2 from "../resources/img/wedding-2.jpg";
