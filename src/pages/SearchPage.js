@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/searchPage.css";
+import "../styles/searchPage.css";
 import hamburger from "../resources/icons/hamburger.svg";
 import { WeddingResult } from "../components/WeddingResult";
 

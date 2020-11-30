@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { endpoint } from "../api/amazonwishlist";
 import { Carousel } from "../components/Carousel";
 import { Mapbox } from "../components/Mapbox";
-import "../css/weddingDetailPage.css";
+import "../styles/weddingDetailPage.css";
 import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
 
 const axios = require("axios").default;

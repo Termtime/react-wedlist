@@ -1,21 +1,15 @@
-import { SEARCH } from "./actions";
+import { combineReducers, createStore } from "redux";
+import { authReducer } from "./auth/auth";
+import { filtersReducer } from "./filters/filters";
+import { searchReducer } from "./search/search";
 
-const INITIAL_STATE = {
-	searchQuery: "",
-	results: [],
+export const composeStore = () => {
+	const rootReducer = combineReducers({
+		auth: authReducer,
+		filters: filtersReducer,
+		search: searchReducer,
+	});
+	const store = createStore(rootReducer /* ,applyMiddleware("tunk")*/);
+
+	return store;
 };
-
-const search = (state = INITIAL_STATE, action) => {
-	switch (action.type) {
-		case SEARCH:
-			return {
-				...state,
-				searchQuery: action.payload.query,
-				results: action.payload.results,
-			};
-		default:
-			return state;
-	}
-};
-
-export { search };

@@ -1,6 +1,6 @@
 export const LANDING = "/";
 export const SIGNIN = "/signin";
-export const MY_EVENTS = "/app/my";
-export const SEARCH = "/app/search";
-export const DETAIL = "/app/wedding/:wedId";
-export const WISHLIST = "/app/wedding/:wedId/wishlist";
+export const MY_EVENTS = "/my";
+export const SEARCH = "/search";
+export const DETAIL = "/wedding/:wedId";
+export const WISHLIST = "/wedding/:wedId/wishlist";
