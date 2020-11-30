@@ -8,7 +8,7 @@ import { AppPage } from "./pages/AppPage";
 import reportWebVitals from "./reportWebVitals";
 import Firebase, { FirebaseContext } from "./components/Firebase/index";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import * as ROUTES from "./routes";
+import * as ROUTES from "./router/routes";
 import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { SearchPage } from "./containers/SearchPage";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import * as ROUTES from "../routes";
+import * as ROUTES from "../router/routes";
 const moment = require("moment");
 
 const WeddingResultBase = (props) => {

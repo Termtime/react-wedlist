@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import * as ROUTES from "../routes";
+import * as ROUTES from "../router/routes";
 import "../styles/navbar.css";
 import { data } from "jquery";
 const NavbarBase = (props) => {

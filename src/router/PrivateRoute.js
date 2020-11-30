@@ -1,4 +1,5 @@
 import React from "react";
+import * as ROUTES from "./routes";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
@@ -6,13 +7,13 @@ const PrivateRoute = ({ isAuthenticated, component: Component, ...rest }) => {
 	return (
 		<Route
 			{...rest}
-			render={(props) => {
+			component={(props) =>
 				isAuthenticated ? (
 					<Component {...props} />
 				) : (
-					<Redirect to="/login" />
-				);
-			}}
+					<Redirect to={ROUTES.SIGNIN} />
+				)
+			}
 		/>
 	);
 };

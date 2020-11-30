@@ -1,4 +1,5 @@
 import React from "react";
+import * as ROUTES from "../router/routes";
 import { useHistory } from "react-router-dom";
 import "../styles/loginPage.css";
 const LoginPageBase = (props) => {
@@ -6,7 +7,7 @@ const LoginPageBase = (props) => {
 	async function loginWithGoogle(e) {
 		if (e) e.preventDefault();
 		if (await props.firebase.signInWithGoogle()) {
-			history.push("/app");
+			history.push(ROUTES.MY_EVENTS);
 		}
 	}
 
