@@ -9,9 +9,6 @@ const WeddingResultBase = (props) => {
 	const history = useHistory();
 	console.log("Result id", id);
 	function goToDetails() {
-		console.log("I WAS CLICKED");
-		// let route = "" + ROUTES.DETAIL;
-		// route = route.replace("wedding", id);
 		console.log(ROUTES.DETAIL.replace(":wedId", id));
 		history.push(ROUTES.DETAIL.replace(":wedId", id));
 	}
