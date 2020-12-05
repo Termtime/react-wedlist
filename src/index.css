@@ -26,7 +26,13 @@ code {
 .end-self {
 	justify-self: flex-end;
 }
+.justify-self-start {
+	justify-self: flex-start;
+}
 
+.justify-self-end {
+	justify-self: flex-end;
+}
 .column {
 	display: flex;
 	flex-direction: column;
@@ -41,8 +47,8 @@ code {
 }
 
 .end {
-	justify-content: end;
-	align-content: end;
+	justify-content: flex-end;
+	align-content: flex-end;
 }
 
 .color-reactive-red {

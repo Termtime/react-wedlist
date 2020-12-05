@@ -2,10 +2,10 @@ import React from "react";
 
 import { FirebaseContext } from "./index";
 
-const withFirebase = (Component) => (
-  <FirebaseContext.Consumer>
-    {(firebase) => <Component firebase={firebase}></Component>}
-  </FirebaseContext.Consumer>
+const withFirebase = (Component) => (props) => (
+	<FirebaseContext.Consumer>
+		{(firebase) => <Component {...props} firebase={firebase} />}
+	</FirebaseContext.Consumer>
 );
 
 export { withFirebase };

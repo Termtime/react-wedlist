@@ -1,4 +1,4 @@
-import { SEARCH } from "./searchActions";
+import { CLEAR_SEARCH, SEARCH } from "./searchActions";
 
 const INITIAL_STATE = {
 	searchQuery: "",
@@ -9,10 +9,11 @@ export const searchReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case SEARCH:
 			return {
-				...state,
 				searchQuery: action.payload.query,
 				results: action.payload.results,
 			};
+		case CLEAR_SEARCH:
+			return INITIAL_STATE;
 		default:
 			return state;
 	}

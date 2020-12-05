@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import * as ROUTES from "../router/routes";
 import "../styles/navbar.css";
-import { data } from "jquery";
+
 const NavbarBase = (props) => {
 	const history = useHistory();
 	const location = useLocation();
 	const [searchQuery, setSearchQuery] = useState("");
-
-	//TODO:Eliminar esto despues de pasarlo a redux
-	// useEffect(() => {
-	// 	props.firebase.auth.onAuthStateChanged((user) => {
-	// 		if (user) {
-	// 			setIsLoggedIn(true);
-	// 		} else {
-	// 			setIsLoggedIn(false);
-	// 		}
-	// 		setIsAuthReady(true);
-	// 	});
-	// }, []);
 
 	function signInWithGoogle() {
 		history.push(ROUTES.SIGNIN);
@@ -34,6 +22,9 @@ const NavbarBase = (props) => {
 
 	async function search(e) {
 		if (e) e.preventDefault();
+		if (searchQuery === "") {
+			return;
+		}
 		var query = searchQuery;
 		var results = [];
 		props.firebase.db
@@ -94,7 +85,7 @@ const NavbarBase = (props) => {
 										placeholder="Search"
 										aria-label="Search"
 										value={searchQuery}
-										onInput={(e) =>
+										onChange={(e) =>
 											setSearchQuery(e.target.value)
 										}
 									/>
