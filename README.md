@@ -3,10 +3,10 @@ You can find a working demo of the app here:
 
 Wedding Details Page:
 
-[!weddingDetailPage](https://i.imgur.com/1T5tDQz.png)
+[!alt text](https://i.imgur.com/1T5tDQz.png)
 
 Amazon Wishlist API implementation
-[!wishlistAPI](https://i.imgur.com/XMgNcJG.png)
+[!alt text](https://i.imgur.com/XMgNcJG.png)
 
 ## User Story
 
