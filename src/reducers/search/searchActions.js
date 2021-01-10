@@ -11,7 +11,7 @@ export function searchWithFilters(
 ) {
 	console.log("searching with filters");
 	if (e) e.preventDefault();
-	var results = [];
+	let results = [];
 	//filter on javascript side
 
 	firebase.db
@@ -25,7 +25,7 @@ export function searchWithFilters(
 			console.log("finished filtering");
 			console.log(results);
 			snapshot.forEach((doc) => {
-				var weddingEntry = doc.data();
+				let weddingEntry = doc.data();
 
 				/////////filtering
 				let isDateFilterEnabled =

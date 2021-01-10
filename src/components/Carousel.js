@@ -2,7 +2,6 @@ import React from "react";
 
 export const Carousel = (props) => {
 	const { slides, id } = props;
-	console.log("slides", slides);
 	return (
 		<div id={id} className="carousel slide" data-ride="carousel">
 			<div className="carousel-inner">
@@ -14,10 +13,22 @@ export const Carousel = (props) => {
 						key={index}
 					>
 						<img
-							className="d-block w-100 h-100"
+							className={`d-block w-100 h-100 ${
+								slide.styleClasses
+									? slide.styleClasses.join(" ")
+									: ""
+							}`}
 							src={slide.src}
 							alt={`slide ${index + 1}`}
 						/>
+						{slide.caption ? (
+							<div className="carousel-caption d-none d-md-block">
+								<h1>{slide.caption}</h1>
+								{slide.subCaption ? (
+									<p>{slide.subCaption}</p>
+								) : null}
+							</div>
+						) : null}
 					</div>
 				))}
 			</div>

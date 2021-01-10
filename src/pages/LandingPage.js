@@ -5,7 +5,23 @@ import wed1 from "../resources/img/wedding-1.jpg";
 import wed2 from "../resources/img/wedding-2.jpg";
 import wed3 from "../resources/img/wedding-3.jpg";
 const LandingPageBase = (props) => {
-	const homepageSlides = [{ src: wed1 }, { src: wed2 }, { src: wed3 }];
+	const homepageSlides = [
+		{
+			src: wed1,
+			caption: "Share your lifetime moment with ease.",
+			styleClasses: ["darkened-img", "font-roboto"],
+		},
+		{
+			src: wed2,
+			caption: "Unite loved ones without worries.",
+			styleClasses: ["darkened-img", "font-roboto"],
+		},
+		{
+			src: wed3,
+			caption: "Create great memories, together.",
+			styleClasses: ["darkened-img", "font-roboto"],
+		},
+	];
 	return (
 		<div id="landingPage-container" className="flex-column">
 			<Carousel

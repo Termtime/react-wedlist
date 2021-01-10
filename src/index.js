@@ -14,7 +14,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { SearchPage } from "./containers/SearchPage";
 import { Navbar } from "./containers/Navbar";
 import { Provider } from "react-redux";
-import { WeddingDetailPage } from "./pages/WeddingDetailPage";
+import { WeddingDetailPage } from "./containers/WeddingDetailPage";
 import { composeStore } from "./reducers";
 import { loggedIn, loggedOut } from "./actions/auth";
 import { PrivateRoute } from "./router/PrivateRoute";

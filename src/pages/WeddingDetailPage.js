@@ -10,7 +10,6 @@ const axios = require("axios").default;
 const $ = require("jquery");
 const WeddingDetailPageBase = (props) => {
 	const { wedId } = useParams();
-	console.log(wedId);
 	const [data, setData] = useState(null);
 	const [wishlistItems, setWishlistItems] = useState([]);
 	const [activeSlide, setActiveSlide] = useState(0);
@@ -19,6 +18,7 @@ const WeddingDetailPageBase = (props) => {
 		lat: 0,
 		lng: 0,
 	});
+	const [isInvited, setIsInvited] = useState(false);
 	let activeWishlistItem = wishlistItems[activeSlide] || null;
 
 	function getData(weddingId) {
@@ -29,8 +29,30 @@ const WeddingDetailPageBase = (props) => {
 			.then((doc) => {
 				if (doc) {
 					const resData = doc.data();
+					/*
+					Response structure:
+					{
+						invites : [ {username: 'Morgan', email: 'test@test.com'}, {}]
+					}
+					*/
+					if (props.uid) {
+						console.log("uid: ", props.uid);
+						console.log(
+							"is the user invited?:",
+							!!resData.invites.find(
+								(invited) => invited.uid === props.uid
+							)
+						);
+						setIsInvited(
+							!!resData.invites.find(
+								(invited) => invited.uid === props.uid
+							)
+						);
+					} else {
+						console.log("props.uid was falsy: ", props.uid);
+					}
+
 					setData(resData);
-					console.log(resData);
 					getWishlistPreview(resData.wishlist);
 					const newMarkerData = [...markerData];
 					//ceremony location
@@ -62,21 +84,15 @@ const WeddingDetailPageBase = (props) => {
 	async function getWishlistPreview(
 		wishlistURL = "https://www.amazon.com/hz/wishlist/ls/P0FJWI7NM3T5?ref_=wl_share"
 	) {
+		//TODO: UNCOMMENT THIS ONCE DONE
 		const regex = /.+(?=\?)/;
 		const wishlistID = wishlistURL
 			.split("/")
 			[wishlistURL.split("/").length - 1].match(regex)[0];
-		console.log(wishlistID);
-
 		const request = endpoint + `wishlist?q=${wishlistID}`;
-
-		console.log(request);
 		const response = await axios.get(request, {
 			headers: { "Access-Control-Allow-Origin": "*" },
 		});
-
-		console.log(response.data.data);
-
 		let items = [];
 		response.data.data.map((item) =>
 			items.push({
@@ -86,21 +102,16 @@ const WeddingDetailPageBase = (props) => {
 				src: item.image,
 			})
 		);
-
 		setWishlistItems(items);
-
 		$("#products-wishlist-carousel").on("slide.bs.carousel", function (e) {
-			var slideFrom = e.from;
-			var slideTo = e.to;
-
-			console.log(`${slideFrom} => ${slideTo}`);
+			let slideTo = e.to;
 			setActiveSlide(slideTo);
 		});
 	}
 
 	useEffect(() => {
 		getData(wedId);
-	}, []);
+	}, [props.uid]);
 
 	if (data) {
 		return (
@@ -148,50 +159,73 @@ const WeddingDetailPageBase = (props) => {
 							<div className="text-center mt-4">
 								<h5>Location:</h5>
 							</div>
-							<div className="row center justify-content-around my-2">
-								<div
-									className="location-pill"
-									onClick={() =>
-										setMapCoords({
-											lat: data.ceremonyLocation.latitude,
-											lng:
-												data.ceremonyLocation.longitude,
-										})
-									}
-								>
-									<span className="mx-1 badge badge-pill ceremony-indicator">
-										&nbsp;
-									</span>
-									<span>Ceremony: {data.ceremonyPlace}</span>
-								</div>
-								<div
-									className="location-pill"
-									onClick={() =>
-										setMapCoords({
-											lat:
-												data.receptionLocation.latitude,
-											lng:
-												data.receptionLocation
-													.longitude,
-										})
-									}
-								>
-									<span className="mx-1 badge badge-pill reception-indicator">
-										&nbsp;
-									</span>
-									<span>
-										Reception: {data.receptionPlace}
-									</span>
-								</div>
-							</div>
-							{markerData.length > 0 ? (
-								<Mapbox
-									lat={mapCoords.lat}
-									lng={mapCoords.lng}
-									markers={markerData}
-									zoom={10}
-								/>
-							) : null}
+							{isInvited ? (
+								<React.Fragment>
+									<div className="row center justify-content-around my-2">
+										<div
+											className="location-pill"
+											onClick={() =>
+												setMapCoords({
+													lat:
+														data.ceremonyLocation
+															.latitude,
+													lng:
+														data.ceremonyLocation
+															.longitude,
+												})
+											}
+										>
+											<span className="mx-1 badge badge-pill ceremony-indicator">
+												&nbsp;
+											</span>
+											<span>
+												Ceremony: {data.ceremonyPlace}
+											</span>
+										</div>
+										<div
+											className="location-pill"
+											onClick={() =>
+												setMapCoords({
+													lat:
+														data.receptionLocation
+															.latitude,
+													lng:
+														data.receptionLocation
+															.longitude,
+												})
+											}
+										>
+											<span className="mx-1 badge badge-pill reception-indicator">
+												&nbsp;
+											</span>
+											<span>
+												Reception: {data.receptionPlace}
+											</span>
+										</div>
+									</div>
+									{markerData.length > 0 ? (
+										<Mapbox
+											lat={mapCoords.lat}
+											lng={mapCoords.lng}
+											markers={markerData}
+											zoom={10}
+										/>
+									) : null}
+								</React.Fragment>
+							) : (
+								<React.Fragment>
+									<h5 className="text-center">
+										{props.uid
+											? "You are not invited to this wedding."
+											: "Location info is only available to logged in users."}
+									</h5>
+									<img
+										alt="map-placeholder"
+										src="https://i.imgur.com/MHmjkp0.jpg"
+										className="mapContainer"
+									></img>
+								</React.Fragment>
+							)}
 						</div>
 					</div>
 				</div>
@@ -206,6 +240,7 @@ const WeddingDetailPageBase = (props) => {
 									<small className="align-self-center ml-2">
 										<a
 											href={data.wishlist}
+											target="blank"
 											className="link"
 										>
 											more...
@@ -216,6 +251,7 @@ const WeddingDetailPageBase = (props) => {
 								<small>{`$ ${activeWishlistItem.price}`}</small>
 								<a
 									className="btn btn-primary mx-3"
+									target="blank"
 									href={activeWishlistItem.url}
 								>
 									Gift it!

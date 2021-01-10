@@ -25,7 +25,7 @@ class Firebase {
 	 * @return true if signed in correctly, false if it failed
 	 */
 	async signInWithGoogle() {
-		var result = await this.auth
+		let result = await this.auth
 			.signInWithPopup(this.googleAuthProvider)
 			.then((user) => {
 				console.log("sign in correct on firebase");
@@ -44,7 +44,7 @@ class Firebase {
 	 * @returns true if it could sign out, false if it couldn't
 	 */
 	async logout() {
-		var result = await this.auth
+		let result = await this.auth
 			.signOut()
 			.then(() => {
 				console.log("sucess");

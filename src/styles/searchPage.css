@@ -20,6 +20,7 @@
 
 #results {
 	overflow-y: auto;
+	overflow-x: hidden;
 	transition: margin-left 0.5s; /* If you want a transition effect */
 	padding: 20px;
 }
@@ -31,6 +32,7 @@
 	height: 45px;
 }
 .card {
+	overflow: hidden;
 	width: 70%;
 	height: 40vh;
 	max-height: 40vh;

@@ -1,6 +1,4 @@
-#landingPage-carousel {
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 #landingPage-container .carousel-item {
 	height: 100vh;
 }
@@ -12,4 +10,13 @@
 #landingPage-container {
 	display: flex;
 	flex-direction: column;
+}
+.carousel-caption {
+	top: 35%;
+	bottom: auto;
+	font-family: "Roboto", sans-serif;
+}
+
+.darkened-img {
+	filter: brightness(60%);
 }

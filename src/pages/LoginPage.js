@@ -11,6 +11,17 @@ const LoginPageBase = (props) => {
 		}
 	}
 
+	const loginWithDemoAccount = async (e) => {
+		if (e) e.preventDefault();
+		if (
+			await props.firebase.auth.signInWithEmailAndPassword(
+				"test@test.com",
+				"123456"
+			)
+		) {
+			history.push(ROUTES.MY_EVENTS);
+		}
+	};
 	return (
 		<div id="loginPage" className="my-row center h-100">
 			<div id="loginCard" className="text-center column text-white">
@@ -34,7 +45,10 @@ const LoginPageBase = (props) => {
 						<hr className="d-inline-block col-2 ml-0 mr-auto" />
 					</div>
 					<div className="center">
-						<button className=" btn btn-success">
+						<button
+							className=" btn btn-success"
+							onClick={loginWithDemoAccount}
+						>
 							Use the demo account
 						</button>
 					</div>

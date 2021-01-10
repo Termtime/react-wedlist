@@ -42,11 +42,9 @@ export const Mapbox = (props) => {
 		});
 		map.current.addControl(new mapboxgl.NavigationControl());
 		map.current.on("move", mapMove);
-		console.log("markers size:", markers.length);
 		markers.forEach((marker) => {
-			console.log("marker created");
 			if (marker.lng === undefined || marker.lat === undefined) return;
-			var markerInstance = new mapboxgl.Marker({
+			let markerInstance = new mapboxgl.Marker({
 				color: marker.color || "#3FB1CE",
 			})
 				.setLngLat([marker.lng, marker.lat])

@@ -25,8 +25,8 @@ const NavbarBase = (props) => {
 		if (searchQuery === "") {
 			return;
 		}
-		var query = searchQuery;
-		var results = [];
+		let query = searchQuery;
+		let results = [];
 		props.firebase.db
 			.collection("weddings")
 			.orderBy("nameLowerCase")
@@ -99,6 +99,15 @@ const NavbarBase = (props) => {
 							</form>
 						</li>
 					</ul>
+					{props.uid ? (
+						<span className="text-white">
+							{props.user.displayName ||
+								props.user.email.substring(
+									0,
+									props.user.email.indexOf("@")
+								)}
+						</span>
+					) : null}
 					{location.pathname.includes("/my") ? (
 						<button
 							className="btn btn-light  my-2 my-sm-0 mx-2"

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BsTrashFill, BsCheck, BsList } from "react-icons/bs";
-import { useHistory } from "react-router-dom";
-import { FILTER_CHANGE } from "../reducers/filters/filtersActions";
 import { searchWithFilters } from "../reducers/search/searchActions";
 
 export const FilterMenuBase = (props) => {
