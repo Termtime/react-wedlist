@@ -1,5 +1,5 @@
 ## Demo
-You can find a working demo of the app here:
+You can find a working demo of the app here: http://termtime-react-wed-list.surge.sh/
 
 Wedding Details Page:
 
