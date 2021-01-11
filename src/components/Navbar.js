@@ -97,12 +97,13 @@ const NavbarBase = (props) => {
 					</ul>
 					{props.uid ? (
 						<span className="text-white mx-4">
-							{props.user.displayName ||
-								"Welcome, " +
-									props.user.email.substring(
+							{props.user.displayName
+								? "Welcome, " + props.user.displayName
+								: "Welcome, " +
+								  props.user.email.substring(
 										0,
 										props.user.email.indexOf("@")
-									)}
+								  )}
 						</span>
 					) : null}
 					{props.uid == null ? (
