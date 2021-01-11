@@ -21,7 +21,7 @@ const WeddingDetailPageBase = (props) => {
 	const [isInvited, setIsInvited] = useState(false);
 	let activeWishlistItem = wishlistItems[activeSlide] || null;
 
-	function getData(weddingId) {
+	const getData = (weddingId) => {
 		props.firebase.db
 			.collection("weddings")
 			.doc(weddingId)
@@ -79,11 +79,11 @@ const WeddingDetailPageBase = (props) => {
 			.catch((error) => {
 				console.log(error);
 			});
-	}
+	};
 
-	async function getWishlistPreview(
+	const getWishlistPreview = async (
 		wishlistURL = "https://www.amazon.com/hz/wishlist/ls/P0FJWI7NM3T5?ref_=wl_share"
-	) {
+	) => {
 		//TODO: UNCOMMENT THIS ONCE DONE
 		const regex = /.+(?=\?)/;
 		const wishlistID = wishlistURL
@@ -103,11 +103,11 @@ const WeddingDetailPageBase = (props) => {
 			})
 		);
 		setWishlistItems(items);
-		$("#products-wishlist-carousel").on("slide.bs.carousel", function (e) {
+		$("#products-wishlist-carousel").on("slide.bs.carousel", (e) => {
 			let slideTo = e.to;
 			setActiveSlide(slideTo);
 		});
-	}
+	};
 
 	useEffect(() => {
 		getData(wedId);
@@ -150,7 +150,7 @@ const WeddingDetailPageBase = (props) => {
 						{/* TODO: Wedding details display */}
 						<div className="row">
 							<span className="p-5 blogText">
-								{data.blogText}
+								{data.blogText.replaceAll("\\n", "\n")}
 							</span>
 						</div>
 					</div>
@@ -163,7 +163,7 @@ const WeddingDetailPageBase = (props) => {
 								<React.Fragment>
 									<div className="row center justify-content-around my-2">
 										<div
-											className="location-pill"
+											className="location-pill text-center"
 											onClick={() =>
 												setMapCoords({
 													lat:
@@ -183,7 +183,7 @@ const WeddingDetailPageBase = (props) => {
 											</span>
 										</div>
 										<div
-											className="location-pill"
+											className="location-pill text-center"
 											onClick={() =>
 												setMapCoords({
 													lat:

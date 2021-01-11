@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import "../styles/loginPage.css";
 const LoginPageBase = (props) => {
 	const history = useHistory();
-	async function loginWithGoogle(e) {
+	const loginWithGoogle = async (e) => {
 		if (e) e.preventDefault();
 		if (await props.firebase.signInWithGoogle()) {
-			history.push(ROUTES.MY_EVENTS);
+			history.push(ROUTES.LANDING);
 		}
-	}
+	};
 
 	const loginWithDemoAccount = async (e) => {
 		if (e) e.preventDefault();
@@ -19,7 +19,7 @@ const LoginPageBase = (props) => {
 				"123456"
 			)
 		) {
-			history.push(ROUTES.MY_EVENTS);
+			history.push(ROUTES.LANDING);
 		}
 	};
 	return (

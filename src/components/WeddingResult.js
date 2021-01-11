@@ -8,10 +8,10 @@ const WeddingResultBase = (props) => {
 	const { id } = props.data;
 	const history = useHistory();
 	console.log("Result id", id);
-	function goToDetails() {
+	const goToDetails = () => {
 		console.log(ROUTES.DETAIL.replace(":wedId", id));
 		history.push(ROUTES.DETAIL.replace(":wedId", id));
-	}
+	};
 	const ceremonyDate = moment
 		.unix(data.ceremonyDate.seconds)
 		.format("DD/MM/YYYY [at] hh:mm A");
@@ -20,7 +20,7 @@ const WeddingResultBase = (props) => {
 		.unix(data.receptionDate.seconds)
 		.format("DD/MM/YYYY [at] hh:mm A");
 	return (
-		<div className="card center-self my-row">
+		<div className="card center-self my-row my-2">
 			<div className="card-body w-100">
 				<h5 className="card-title">{data.name}</h5>
 				<div>
@@ -45,7 +45,7 @@ const WeddingResultBase = (props) => {
 					{data.themes.map((theme, i) => (
 						<span
 							key={i}
-							className="color-reactive-red mr-1 badge badge-pill text-capitalize badge-primary"
+							className="fancy-font color-reactive-red mr-1 badge badge-pill text-capitalize badge-primary"
 						>
 							{theme}
 						</span>

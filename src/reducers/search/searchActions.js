@@ -1,14 +1,14 @@
 export const SEARCH = "SEARCH";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
-export function searchWithFilters(
+export const searchWithFilters = (
 	e,
 	query,
 	firebase,
 	history = null,
 	emitSearchFunction,
 	filters
-) {
+) => {
 	console.log("searching with filters");
 	if (e) e.preventDefault();
 	let results = [];
@@ -65,4 +65,4 @@ export function searchWithFilters(
 			if (history) history.push(SEARCH);
 		})
 		.catch((error) => console.log(error));
-}
+};

@@ -20,3 +20,9 @@
 .darkened-img {
 	filter: brightness(60%);
 }
+
+@media only screen and (max-width: 600px) {
+	.carousel-caption h1 {
+		font-size: 20pt;
+	}
+}

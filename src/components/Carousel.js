@@ -22,7 +22,7 @@ export const Carousel = (props) => {
 							alt={`slide ${index + 1}`}
 						/>
 						{slide.caption ? (
-							<div className="carousel-caption d-none d-md-block">
+							<div className="carousel-caption d-block">
 								<h1>{slide.caption}</h1>
 								{slide.subCaption ? (
 									<p>{slide.subCaption}</p>

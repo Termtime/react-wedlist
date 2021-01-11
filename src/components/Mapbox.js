@@ -44,14 +44,14 @@ export const Mapbox = (props) => {
 		map.current.on("move", mapMove);
 		markers.forEach((marker) => {
 			if (marker.lng === undefined || marker.lat === undefined) return;
-			let markerInstance = new mapboxgl.Marker({
+			new mapboxgl.Marker({
 				color: marker.color || "#3FB1CE",
 			})
 				.setLngLat([marker.lng, marker.lat])
 				.addTo(map.current);
 		});
 
-		return function () {
+		return () => {
 			map.current.off("move", mapMove);
 		};
 	}, []);

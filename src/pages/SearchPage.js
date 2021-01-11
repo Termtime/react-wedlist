@@ -7,7 +7,7 @@ const SearchPageBase = (props) => {
 	useEffect(() => {
 		return () => {
 			console.log("Exiting search page");
-			props.clearResults();
+			// props.clearResults();
 		};
 	}, []);
 	return (

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import "../styles/AppPage.css";
 
 const AppPageBase = (props) => {

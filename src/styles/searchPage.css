@@ -32,7 +32,7 @@
 	height: 45px;
 }
 .card {
-	overflow: hidden;
+	overflow-y: auto;
 	width: 70%;
 	height: 40vh;
 	max-height: 40vh;
@@ -48,9 +48,13 @@
 .img-container img {
 	max-height: 40vh;
 	object-fit: cover;
-	object-position: center;
+	object-position: top;
 }
 
+.fancy-font {
+	/* font-family: "Roboto"; */
+	font-weight: 400;
+}
 .badge {
 	-webkit-user-select: none;
 }

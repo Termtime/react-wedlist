@@ -6,17 +6,17 @@ export const FilterMenuBase = (props) => {
 	const [filters, setFilters] = useState(props.filters);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
 
-	function openSidePanel() {
+	const openSidePanel = () => {
 		document.getElementById("filters").style.left = "0px";
 		document.getElementById("filterToggleButton").style.marginLeft =
 			"250px";
-	}
-	function closeSidePanel() {
+	};
+	const closeSidePanel = () => {
 		document.getElementById("filters").style.left = "-250px";
 		document.getElementById("filterToggleButton").style.marginLeft = "0";
-	}
+	};
 
-	function toggleFilters() {
+	const toggleFilters = () => {
 		if (isFilterMenuOpen) {
 			closeSidePanel();
 			setIsFilterMenuOpen(false);
@@ -24,9 +24,9 @@ export const FilterMenuBase = (props) => {
 			openSidePanel();
 			setIsFilterMenuOpen(true);
 		}
-	}
+	};
 
-	function applyFilters(e = null) {
+	const applyFilters = (e = null) => {
 		if (
 			(filters.dateStart.length > 0 && filters.dateStart.length > 0) ||
 			(filters.dateStart.length === 0 && filters.dateStart.length === 0)
@@ -43,7 +43,19 @@ export const FilterMenuBase = (props) => {
 				filters
 			);
 		}
-	}
+	};
+
+	const clearFilters = (e = null) => {
+		props.clearFilters();
+		searchWithFilters(
+			e,
+			props.query,
+			props.firebase,
+			null,
+			props.emitSearch,
+			filters
+		);
+	};
 
 	useEffect(() => {
 		return () => props.clearFilters();
@@ -124,7 +136,7 @@ export const FilterMenuBase = (props) => {
 							</button>
 							<button
 								className="btn btn-danger"
-								onClick={props.clearFilters}
+								onClick={clearFilters}
 							>
 								Clear <BsTrashFill />
 							</button>

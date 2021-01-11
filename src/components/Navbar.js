@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../router/routes";
 import "../styles/navbar.css";
 
 const NavbarBase = (props) => {
 	const history = useHistory();
-	const location = useLocation();
 	const [searchQuery, setSearchQuery] = useState("");
 
-	function signInWithGoogle() {
+	const signInWithGoogle = () => {
 		history.push(ROUTES.SIGNIN);
-	}
+	};
 
-	async function signout() {
+	const signout = async () => {
 		console.log("logging out");
 		if (await props.firebase.logout()) {
 			console.log("logogut success");
 			history.push(ROUTES.LANDING);
 		}
-	}
+	};
 
-	async function search(e) {
+	const search = async (e) => {
 		if (e) e.preventDefault();
 		if (searchQuery === "") {
 			return;
@@ -45,11 +44,8 @@ const NavbarBase = (props) => {
 				history.push(ROUTES.SEARCH);
 			})
 			.catch((error) => console.log(error));
-	}
+	};
 
-	function goToMyEvents() {
-		history.push(ROUTES.MY_EVENTS);
-	}
 	return (
 		<div className="navbar-container">
 			<nav
@@ -100,29 +96,15 @@ const NavbarBase = (props) => {
 						</li>
 					</ul>
 					{props.uid ? (
-						<span className="text-white">
+						<span className="text-white mx-4">
 							{props.user.displayName ||
-								props.user.email.substring(
-									0,
-									props.user.email.indexOf("@")
-								)}
+								"Welcome, " +
+									props.user.email.substring(
+										0,
+										props.user.email.indexOf("@")
+									)}
 						</span>
 					) : null}
-					{location.pathname.includes("/my") ? (
-						<button
-							className="btn btn-light  my-2 my-sm-0 mx-2"
-							onClick={goToMyEvents}
-						>
-							My events
-						</button>
-					) : (
-						<button
-							className="btn btn-outline-light  my-2 my-sm-0 mx-2"
-							onClick={goToMyEvents}
-						>
-							My events
-						</button>
-					)}
 					{props.uid == null ? (
 						<button
 							className="btn btn-success my-2 my-sm-0"
