@@ -76,6 +76,7 @@ const NavbarBase = (props) => {
 							>
 								<div className="input-group">
 									<input
+										id="search-bar"
 										className="form-control mr-sm-2"
 										type="search"
 										placeholder="Search"
@@ -108,6 +109,7 @@ const NavbarBase = (props) => {
 					) : null}
 					{props.uid == null ? (
 						<button
+							id="login-btn"
 							className="btn btn-success my-2 my-sm-0"
 							onClick={signInWithGoogle}
 						>
@@ -115,6 +117,7 @@ const NavbarBase = (props) => {
 						</button>
 					) : (
 						<button
+							id="logout-btn"
 							className="btn btn-danger my-2 my-sm-0"
 							onClick={signout}
 						>

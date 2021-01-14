@@ -7,7 +7,6 @@ const WeddingResultBase = (props) => {
 	const { data } = props.data;
 	const { id } = props.data;
 	const history = useHistory();
-	console.log("Result id", id);
 	const goToDetails = () => {
 		console.log(ROUTES.DETAIL.replace(":wedId", id));
 		history.push(ROUTES.DETAIL.replace(":wedId", id));
@@ -15,7 +14,6 @@ const WeddingResultBase = (props) => {
 	const ceremonyDate = moment
 		.unix(data.ceremonyDate.seconds)
 		.format("DD/MM/YYYY [at] hh:mm A");
-	console.log(ceremonyDate);
 	const receptionDate = moment
 		.unix(data.receptionDate.seconds)
 		.format("DD/MM/YYYY [at] hh:mm A");
