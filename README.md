@@ -1,15 +1,15 @@
 ## Demo
 You can find a working demo of the app here: http://termtime-react-wed-list.surge.sh/
 
+Search page:
+![SearchPage](https://i.imgur.com/2QOIJhm.png)
+
 Wedding Details Page:
 
 ![WeddingDetailPage](https://i.imgur.com/1T5tDQz.png)
 
 Amazon Wishlist API implementation
 ![api implementation](https://i.imgur.com/XMgNcJG.png)
-
-Search page:
-![SearchPage](https://imgur.com/a/jaiu7jp)
 
 ## User Story
 
