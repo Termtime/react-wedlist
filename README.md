@@ -8,6 +8,9 @@ Wedding Details Page:
 Amazon Wishlist API implementation
 ![api implementation](https://i.imgur.com/XMgNcJG.png)
 
+Search page:
+![SearchPage](https://imgur.com/a/jaiu7jp)
+
 ## User Story
 
 The User can:
